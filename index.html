@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="PARMCO, a phone-controlled stepper motor project by Group 4 for ECSE 4235.">
+<title>PARMCO — Group 4</title>
+<style>
+:root{color-scheme:dark;--bg:#10191a;--panel:#172526;--line:#345050;--ink:#edf5eb;--muted:#b3c7be;--accent:#a6efaa}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font:1rem/1.6 system-ui,sans-serif}a{color:var(--accent)}a:focus-visible{outline:2px solid var(--accent);outline-offset:5px}.wrap{width:min(100% - 2.5rem,68rem);margin:auto}
+header{border-bottom:1px solid var(--line)}header .wrap{min-height:4.25rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;padding:.7rem 0}nav{display:flex;gap:1.15rem;flex-wrap:wrap}nav a,.brand{text-decoration:none;font-weight:650}
+section{padding:3.5rem 0;border-bottom:1px solid var(--line)}.hero{padding:5rem 0;background:radial-gradient(ellipse at 90% 15%,#254538,transparent 60%)}.eyebrow,.tag{font:700 .77rem/1.5 ui-monospace,monospace;text-transform:uppercase;letter-spacing:.1em;color:var(--accent)}h1,h2,h3,p{margin:0}h1{font-size:clamp(3.5rem,12vw,8rem);letter-spacing:-.08em;line-height:1.03;margin:.4rem 0 1rem}h2{font-size:clamp(1.8rem,5vw,2.75rem);letter-spacing:-.045em;line-height:1.16;margin:.3rem 0 1rem}h3{font-size:1.15rem}p{color:var(--muted)}.lede{font-size:clamp(1.15rem,3vw,1.45rem);max-width:39rem}.button{display:inline-block;margin-top:1.6rem;padding:.65rem 1rem;border-radius:.45rem;color:var(--bg);background:var(--accent);font-weight:750;text-decoration:none}.diagram{margin:1.5rem 0 0;padding:1rem;border:1px solid var(--line);border-radius:.75rem;background:var(--panel)}.flow{display:grid;grid-template-columns:1fr auto 1fr auto 1fr auto 1fr;gap:.55rem;align-items:center}.node{border:1px solid var(--line);border-radius:.45rem;padding:.7rem;text-align:center;background:var(--bg);font-weight:700}.arrow{color:var(--accent);text-align:center}.feedback{border-top:1px dashed var(--line);margin-top:1rem;padding-top:.8rem}.rows{display:grid;gap:.65rem;margin-top:1.5rem}.row{display:grid;grid-template-columns:minmax(6rem,10rem) 1fr;gap:1rem;border-top:1px solid var(--line);padding:1rem 0}.row p{margin-top:.3rem}footer{padding:1.5rem 0 2rem;color:var(--muted);font-size:.9rem}
+@media(max-width:40rem){.flow{grid-template-columns:1fr}.arrow{transform:rotate(90deg)}.row{grid-template-columns:1fr;gap:.25rem}.hero{padding:3rem 0}section{padding:2.5rem 0}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body id="top">
+<header><div class="wrap"><a class="brand" href="#top">PARMCO / Group 4</a><nav aria-label="Page sections"><a href="#system">System</a><a href="#progress">Progress</a><a href="#team">Team</a></nav></div></header>
+<main>
+<section class="hero"><div class="wrap"><p class="eyebrow">ECSE 4235 · Embedded Systems II · Fall 2026</p><h1>PARMCO</h1><p class="lede">An iPhone interface for controlling a stepper motor over Bluetooth, with independent measurements of speed and shaft position.</p><a class="button" href="#system">Explore the system ↓</a></div></section>
+<section id="system"><div class="wrap"><p class="eyebrow">01 / System</p><h2>From the phone to the motor</h2><p>The iPhone sends commands over Bluetooth Low Energy. The Raspberry Pi interprets them and drives the stepper motor through the SN754410NE driver. The 4N25 provides the driver’s enable signal.</p>
+<figure class="diagram"><div class="flow"><div class="node">iPhone app</div><span class="arrow" aria-hidden="true">→</span><div class="node">Raspberry Pi 4</div><span class="arrow" aria-hidden="true">→</span><div class="node">Motor driver</div><span class="arrow" aria-hidden="true">→</span><div class="node">Stepper motor</div></div><figcaption class="feedback"><strong>Measurements back to the Pi:</strong> The IR sensor counts propeller blade passes for RPM. The AS5600 measures the shaft angle, which also gives a second RPM estimate.</figcaption></figure></div></section>
+<section id="progress"><div class="wrap"><p class="eyebrow">02 / Checkpoints</p><h2>Build progress</h2><div class="rows">
+<article class="row"><span class="tag">CP1</span><div><h3>Keyboard motor control</h3><p>Built the driver circuit and controlled the stepper from the Pi keyboard.</p></div></article>
+<article class="row"><span class="tag">CP2</span><div><h3>Bluetooth and IR speed sensing</h3><p>Tested the iPhone-to-Pi connection. The Pi displayed app commands and sent acknowledgments back; motor control still ran from the keyboard. The IR sensor provided a measured RPM for comparison with blade counts.</p></div></article>
+<article class="row"><span class="tag">CP3 · In progress</span><div><h3>App control and shaft position</h3><p>Integrate app commands with the motor program, add encoder readings and zero calibration, and demonstrate speed and missed-step tests from the phone.</p></div></article>
+<article class="row"><span class="tag">Final · Planned</span><div><h3>Feedback and validation</h3><p>Complete speed and position feedback and document measured results from the final tests.</p></div></article>
+</div></div></section>
+<section id="team"><div class="wrap"><p class="eyebrow">03 / Team</p><h2>Group 4</h2><div class="rows"><div class="row"><strong>Sammy Omer</strong><p>Motor circuit, iPhone app, and Pi Bluetooth service.</p></div><div class="row"><strong>Zachary Brammer</strong><p>Pi motor control, IR sensing, and sensor mounting.</p></div></div><a class="button" href="https://github.com/Herring-UGAECSE-4235-F26/Group-4">Class code repository ↗</a></div></section>
+</main>
+<footer class="wrap">PARMCO · ECSE 4235 · Group 4 · Site drafted with OpenAI Codex</footer>
+</body>
+</html>
